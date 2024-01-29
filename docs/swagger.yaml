@@ -1,0 +1,669 @@
+basePath: /
+definitions:
+  dto.ActivitiesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/dto.Log'
+        type: array
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.Comment:
+    properties:
+      comment:
+        type: string
+        x-order: "2"
+      comment_id:
+        type: integer
+        x-order: "0"
+      username:
+        type: string
+        x-order: "1"
+    type: object
+  dto.GetAllPostsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/dto.ViewPost'
+        type: array
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.GetCommentResponse:
+    properties:
+      data:
+        allOf:
+        - $ref: '#/definitions/dto.ViewComment'
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.GetPostByIdResponse:
+    properties:
+      data:
+        allOf:
+        - $ref: '#/definitions/dto.ViewPostWithComments'
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.Log:
+    properties:
+      created_at:
+        type: string
+        x-order: "1"
+      description:
+        type: string
+        x-order: "0"
+    type: object
+  dto.Login:
+    properties:
+      email:
+        type: string
+        x-order: "0"
+      password:
+        type: string
+        x-order: "1"
+    required:
+    - email
+    - password
+    type: object
+  dto.LoginResponse:
+    properties:
+      data:
+        type: string
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.PostAndDeleteCommentResponse:
+    properties:
+      data:
+        allOf:
+        - $ref: '#/definitions/entity.Comment'
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.PostAndDeleteResponse:
+    properties:
+      data:
+        allOf:
+        - $ref: '#/definitions/entity.Post'
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.PostComment:
+    properties:
+      comment:
+        type: string
+        x-order: "0"
+      post_id:
+        type: integer
+        x-order: "1"
+    required:
+    - comment
+    - post_id
+    type: object
+  dto.PostData:
+    properties:
+      content:
+        type: string
+      image_url:
+        type: string
+    required:
+    - image_url
+    type: object
+  dto.Register:
+    properties:
+      age:
+        minimum: 12
+        type: integer
+        x-order: "4"
+      email:
+        type: string
+        x-order: "1"
+      full_name:
+        type: string
+        x-order: "0"
+      password:
+        type: string
+        x-order: "3"
+      username:
+        type: string
+        x-order: "2"
+    required:
+    - age
+    - email
+    - full_name
+    - password
+    - username
+    type: object
+  dto.RegisterResponse:
+    properties:
+      data:
+        allOf:
+        - $ref: '#/definitions/dto.UserWithoutPassword'
+        x-order: "1"
+      message:
+        type: string
+        x-order: "0"
+    type: object
+  dto.UserInfo:
+    properties:
+      email:
+        type: string
+        x-order: "2"
+      user_id:
+        type: integer
+        x-order: "0"
+      username:
+        type: string
+        x-order: "1"
+    type: object
+  dto.UserWithoutPassword:
+    properties:
+      age:
+        type: integer
+        x-order: "5"
+      email:
+        type: string
+        x-order: "2"
+      full_name:
+        type: string
+        x-order: "1"
+      id:
+        type: integer
+        x-order: "0"
+      username:
+        type: string
+        x-order: "3"
+    type: object
+  dto.ViewComment:
+    properties:
+      comment:
+        type: string
+        x-order: "1"
+      comment_id:
+        type: integer
+        x-order: "0"
+      post:
+        allOf:
+        - $ref: '#/definitions/dto.ViewPostWithoutUserInfo'
+        x-order: "3"
+      user:
+        allOf:
+        - $ref: '#/definitions/dto.UserInfo'
+        x-order: "2"
+    type: object
+  dto.ViewPost:
+    properties:
+      content:
+        type: string
+        x-order: "1"
+      image_url:
+        type: string
+        x-order: "2"
+      post_id:
+        type: integer
+        x-order: "0"
+      user:
+        allOf:
+        - $ref: '#/definitions/dto.UserInfo'
+        x-order: "3"
+    type: object
+  dto.ViewPostWithComments:
+    properties:
+      comments:
+        items:
+          $ref: '#/definitions/dto.Comment'
+        type: array
+        x-order: "1"
+      post:
+        allOf:
+        - $ref: '#/definitions/dto.ViewPost'
+        x-order: "0"
+    type: object
+  dto.ViewPostWithoutUserInfo:
+    properties:
+      content:
+        type: string
+        x-order: "1"
+      image_url:
+        type: string
+        x-order: "2"
+      post_id:
+        type: integer
+        x-order: "0"
+    type: object
+  entity.Comment:
+    properties:
+      comment:
+        type: string
+        x-order: "3"
+      comment_id:
+        type: integer
+        x-order: "0"
+      post_id:
+        type: integer
+        x-order: "2"
+      user_id:
+        type: integer
+        x-order: "1"
+    type: object
+  entity.Post:
+    properties:
+      content:
+        type: string
+        x-order: "2"
+      image_url:
+        type: string
+        x-order: "3"
+      post_id:
+        type: integer
+        x-order: "0"
+      user_id:
+        type: integer
+        x-order: "1"
+    type: object
+  utils.ErrResponse:
+    properties:
+      detail:
+        type: string
+        x-order: "2"
+      status:
+        type: integer
+        x-order: "0"
+      type:
+        type: string
+        x-order: "1"
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: email@mail.com
+    name: Daniel Osvaldo Rahmanto
+  description: Made for Graded Challenge 3 - Hacktiv8 FTGO
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Graded Challenge 3 API
+  version: "1.0"
+paths:
+  /activities:
+    get:
+      parameters:
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ActivitiesResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Get current user logs
+      tags:
+      - activities
+  /comments:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Comment data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.PostComment'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.PostAndDeleteCommentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Post a new comment
+      tags:
+      - comments
+  /comments/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PostAndDeleteCommentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Delete comment by id
+      tags:
+      - comments
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetCommentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Get comment by id
+      tags:
+      - comments
+  /posts:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetAllPostsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Get all posts
+      tags:
+      - posts
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Post data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.PostData'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.PostAndDeleteResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Create a new post
+      tags:
+      - posts
+  /posts/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PostAndDeleteResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Delete post by id
+      tags:
+      - posts
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: JWT Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetPostByIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Get post by id
+      tags:
+      - posts
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Login data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Login existing user
+      tags:
+      - users
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Register data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Register'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.RegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrResponse'
+      summary: Register new user into database
+      tags:
+      - users
+swagger: "2.0"
